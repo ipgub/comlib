@@ -68,3 +68,19 @@ read_data <- function(url, ftype){
   return(data)
 }
 
+# prompt: create empty dataframe to store all the final exam calculation detail
+
+final_exam_grading <- data.frame()
+
+# Create a mapping of descriptions to numerical weights
+grading_weights <- c(
+  "Full marks. For correct method, correct calculation steps, and correct final answer" = 1.0,
+  "Partial marks. For correct method, but incorrect for either calculation steps or final answer" = 0.9,
+  "Partial marks. For correct method, but incorrect for either calculation steps or final answer" = 0.9,
+  "Partial marks. For correct method, but incorrect both calculation steps and final answer" = 0.8,
+  "Partial marks. For partially correct method" = 0.7,
+  "Half marks. For incorrect method/answers" = 0.5,
+  "Lower half marks. For totally unrelated answers/methods or only quoting problems" = 0.35,
+  "Null marks. For totally empty answer" = 0.0
+)
+

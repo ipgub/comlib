@@ -5,7 +5,7 @@
 #
 # Libraries
 #
-required_packages <- c("googledrive", "dplyr", "ggplot2", "readr","readxl", "googlesheets4")
+required_packages <- c("googledrive", "dplyr", "ggplot2", "readr","readxl", "googlesheets4", "WriteXLS", "lubridate")
 for(pkg in required_packages) {
   if (!require(pkg, character.only = TRUE)) {
     install.packages(pkg)

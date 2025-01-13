@@ -5,7 +5,7 @@
 #
 # Libraries
 #
-required_packages <- c("googledrive", "dplyr", "ggplot2", "readr","readxl")
+required_packages <- c("googledrive", "dplyr", "ggplot2", "readr","readxl", "googlesheets4", "openxlsx")
 for(pkg in required_packages) {
   if (!require(pkg, character.only = TRUE)) {
     install.packages(pkg)
@@ -25,7 +25,7 @@ drive_auth()
 #
 
 # Extract file ID from a google drive file given its URL
-extract_drive_id <- function(url) {
+extract_file_id <- function(url) {
   # Pattern untuk berbagai format URL Google Drive
   patterns <- c(
     "drive\\.google\\.com/file/d/([^/]+)",           # Format: /file/d/[ID]/
@@ -47,12 +47,19 @@ extract_drive_id <- function(url) {
 }
 
 
+# Extract Goolge drive folder ID from Google Drive URL
+extract_folder_id <- function(drive_url){
+  # Use a regular expression to extract the folder ID
+  folder_id <- sub(".*folders/([^/?]+).*", "\\1", drive_url)
+  return(folder_id)
+}
+
 # Reading data from excel / csv file saved in Google drive, given its URL.
 #
 # prompt: memanggil function read_excel jika type adalah xls atau read_csv jika type adalah csv
 #
 read_data <- function(url, ftype){
-  file_ID <- extract_drive_id(url)
+  file_ID <- extract_file_id(url)
   temp_file_path <- tempfile(fileext = paste0(".", ftype))
   drive_download(as_id(file_ID), path = temp_file_path, overwrite = TRUE)
 

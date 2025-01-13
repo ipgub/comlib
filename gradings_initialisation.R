@@ -83,7 +83,6 @@ final_exam_grading <- data.frame()
 grading_weights <- c(
   "Full marks. For correct method, correct calculation steps, and correct final answer" = 1.0,
   "Partial marks. For correct method, but incorrect for either calculation steps or final answer" = 0.9,
-  "Partial marks. For correct method, but incorrect for either calculation steps or final answer" = 0.9,
   "Partial marks. For correct method, but incorrect both calculation steps and final answer" = 0.8,
   "Partial marks. For partially correct method" = 0.7,
   "Half marks. For incorrect method/answers" = 0.5,

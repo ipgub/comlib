@@ -24,6 +24,21 @@ drive_auth()
 # Modules/functions
 #
 
+#######################################################################################
+# Get curret time (WIB/Bangkok time zone)
+get_current_time <- function(){
+  # Get current system time
+  current_time <- Sys.time()
+  # Convert to Bangkok time zone (Asia/Bangkok)
+  bangkok_time <- with_tz(current_time, "Asia/Bangkok")
+  # Format the time to show only date and hour:minute:second
+  formatted_time <- format(bangkok_time, "%Y-%m-%d %H:%M:%S")
+  # Print the formatted time
+  return(formatted_time)
+}
+
+
+#######################################################################################
 # Extract file ID from a google drive file given its URL
 extract_file_id <- function(url) {
   # Pattern untuk berbagai format URL Google Drive
@@ -46,7 +61,7 @@ extract_file_id <- function(url) {
   return(NULL)
 }
 
-
+#######################################################################################
 # Extract Goolge drive folder ID from Google Drive URL
 extract_folder_id <- function(drive_url){
   # Use a regular expression to extract the folder ID
@@ -54,6 +69,7 @@ extract_folder_id <- function(drive_url){
   return(folder_id)
 }
 
+#######################################################################################
 # Reading data from excel / csv file saved in Google drive, given its URL.
 #
 # prompt: memanggil function read_excel jika type adalah xls atau read_csv jika type adalah csv
@@ -75,10 +91,11 @@ read_data <- function(url, ftype){
   return(data)
 }
 
+#######################################################################################
 # prompt: create empty dataframe to store all the final exam calculation detail
-
 final_exam_grading <- data.frame()
 
+#######################################################################################
 # Create a mapping of descriptions to numerical weights
 grading_weights <- c(
   "Full marks. For correct method, correct calculation steps, and correct final answer" = 1.0,
